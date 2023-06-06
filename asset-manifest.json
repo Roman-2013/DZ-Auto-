@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/DZ-Auto-/static/css/main.c55267e1.css",
+    "main.js": "/DZ-Auto-/static/js/main.0848182e.js",
+    "static/js/787.66cb4309.chunk.js": "/DZ-Auto-/static/js/787.66cb4309.chunk.js",
+    "static/media/avatar.png": "/DZ-Auto-/static/media/avatar.d947cb9d0d13765666b6.png",
+    "index.html": "/DZ-Auto-/index.html",
+    "main.c55267e1.css.map": "/DZ-Auto-/static/css/main.c55267e1.css.map",
+    "main.0848182e.js.map": "/DZ-Auto-/static/js/main.0848182e.js.map",
+    "787.66cb4309.chunk.js.map": "/DZ-Auto-/static/js/787.66cb4309.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c55267e1.css",
+    "static/js/main.0848182e.js"
+  ]
+}
