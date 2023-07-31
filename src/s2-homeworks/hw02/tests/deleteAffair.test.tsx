@@ -20,6 +20,7 @@ test('delete 0', () => {
 test('delete 1', () => {
     const newState = deleteAffair(initialState, 1)
     expect(newState.length).toBe(4)
+
 })
 test('delete 3', () => {
     const newState = deleteAffair(initialState, 3)

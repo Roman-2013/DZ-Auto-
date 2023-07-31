@@ -6,11 +6,12 @@ import s2 from '../Affairs.module.css'
 type AffairPropsType = {
     // key не нужно типизировать
     affair: AffairType
-    deleteAffairCallback: any // need to fix any
+    deleteAffairCallback: (_id: number)=>void // need to fix any
 }
 
 function Affair(props: AffairPropsType) {
-    const deleteCallback = () => {
+    const deleteCallback = (id:number) => {
+        props.deleteAffairCallback(id)
         // need to fix
         // пропс.функция(мне нужен _id)
         // давайте проследим боевой путь это функции, или как она будет всплывать:
@@ -31,6 +32,7 @@ function Affair(props: AffairPropsType) {
             className={affairClass}
         >
             <div id={'hw2-name-' + props.affair._id} className={nameClass}>
+                {props.affair.name}
                 {/*создаёт студент*/}
                 {/* ПРОПС.ВЫВОДИМ ИМЯ*/}
                 {/**/}
@@ -45,6 +47,7 @@ function Affair(props: AffairPropsType) {
                 id={'hw2-button-delete-' + props.affair._id}
                 className={buttonClass}
                 // need to fix
+                onClick={()=>deleteCallback(props.affair._id)}
                 //ОНКЛИК={ФУНКЦИЯ}
             >
                 {/*текст кнопки могут изменить студенты*/}
