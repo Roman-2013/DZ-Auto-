@@ -39,7 +39,7 @@ function Affair(props: AffairPropsType) {
             </div>
             <div id={'hw2-priority-' + props.affair._id} hidden>
                 {/*создаёт студент*/}
-
+                {props.affair.priority}
                 {/**/}
             </div>
 
@@ -48,7 +48,7 @@ function Affair(props: AffairPropsType) {
                 className={buttonClass}
                 // need to fix
                 onClick={()=>deleteCallback(props.affair._id)}
-                //ОНКЛИК={ФУНКЦИЯ}
+
             >
                 {/*текст кнопки могут изменить студенты*/}
                 X
