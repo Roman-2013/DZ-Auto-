@@ -52,9 +52,9 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
                       id={id + '-input-' + o.id}
                       className={finalRadioClassName}
                       type={'radio'}
-                      name={o.id}
+                      name={o.value}
                       checked={o.id===value}
-                      value={o.value}
+                      value={o.id}
                       // name, checked, value делают студенты
                       // http://htmlbook.ru/html/input/name
                       //checked={o.id === ...может попробовать значение которое тянем из HW7?}
