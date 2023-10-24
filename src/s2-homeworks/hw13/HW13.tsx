@@ -21,48 +21,59 @@ const HW13 = () => {
     const [image, setImage] = useState('')
 
     const send = (x?: boolean | null) => () => {
-        const url = x === null ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
-            : 'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test'
+        const url =
+            x === null
+                ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
+                : 'https://samurai.it-incubator.io/api/3.0/homework/test'
 
         setCode('')
         setImage('')
         setText('')
         setInfo('...loading')
 
-        axios.post(url, {success: x})
+        type request = {
+            errorText: string;
+            info: string;
+            yourBody: RequestYourBody;
+            yourQuery: {};
+        }
+        type RequestYourBody = {
+            success: boolean;
+        }
+
+        axios.post<request>(url, {success: x})
             .then((res) => {
-                setCode('Код 200!')
-                setImage(success200)
-                setText(`...все ок)
-                код 200-обычно означает что скорее всего все ок!)`)
+                if (res.data.yourBody.success) {
+                    setCode('Код 200!')
+                    setImage(success200)
+                    setText(res.data.errorText)
+                    setInfo(res.data.info)
 
+                }
             })
-            .catch((e)=>{
-              if(x){
-                  setCode('Код 200!')
-                  setImage(success200)
-                  setText(`...все ок) код 200-обычно означает что скорее всего все ок!)`)
-                  setInfo('')
-              }else if (x===false){
-                  setCode('Код 400!')
-                  setImage(error400)
-                  setText('Ты не отправил success в body вообще! ошибка 404 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
-                  setInfo('')
-              }else if (x===undefined){
-                  setCode('Ошибка 500!')
-                  setImage(error500)
-                  setText('эмитация ошибки на серверем ошибка 500-обычно означает что что-то сломалось на сервере, например база данных)')
-                  setInfo('')
-              }else {
-                  setCode('Error')
-                  setImage(errorUnknown)
-                  setText('Network Error AxiosError')
-                  setInfo('')
-              }
-            })
+
+            .catch(rej => {
+                    console.log(rej)
+                    if (rej.message === 'Request failed with status code 500') {
+                        setCode('Ошибка 400!')
+                        setImage(error400)
+                        setText(rej.response.data.errorText)
+                        setInfo(rej.response.data.info)
+                    } else if (rej.message === 'Request failed with status code 400') {
+                        setCode('Ошибка 500!')
+                        setImage(error500)
+                        setText(rej.response.data.errorText)
+                        setInfo(rej.response.data.info)
+                    } else {
+                        setCode('Error')
+                        setImage(errorUnknown)
+                        setText(rej.message)
+                        setInfo(rej.name)
+                    }
+
+                }
+            )
     }
-
-
 
 
     return (
@@ -75,7 +86,8 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                        disabled={!!info}
+                        disabled={info==='...loading'}
+
 
                     >
                         Send true
@@ -84,7 +96,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
-                        disabled={!!info}
+                        disabled={info==='...loading'}
                         // дописать
 
                     >
@@ -94,7 +106,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
-                        disabled={!!info}
+                        disabled={info==='...loading'}
                         // дописать
 
                     >
@@ -104,7 +116,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
-                        disabled={!!info}
+                        disabled={info==='...loading'}
                         // дописать
 
                     >
