@@ -21,29 +21,49 @@ const HW13 = () => {
     const [image, setImage] = useState('')
 
     const send = (x?: boolean | null) => () => {
-        const url =
-            x === null
-                ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
-                : 'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test'
+        const url = x === null ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
+            : 'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test'
 
         setCode('')
         setImage('')
         setText('')
         setInfo('...loading')
 
-        axios
-            .post(url, {success: x})
+        axios.post(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                // дописать
+                setText(`...все ок)
+                код 200-обычно означает что скорее всего все ок!)`)
 
             })
-            .catch((e) => {
-                // дописать
-
+            .catch((e)=>{
+              if(x){
+                  setCode('Код 200!')
+                  setImage(success200)
+                  setText(`...все ок) код 200-обычно означает что скорее всего все ок!)`)
+                  setInfo('')
+              }else if (x===false){
+                  setCode('Код 400!')
+                  setImage(error400)
+                  setText('Ты не отправил success в body вообще! ошибка 404 - обычно означает что скорее всего фронт отправил что-то не то на бэк!')
+                  setInfo('')
+              }else if (x===undefined){
+                  setCode('Ошибка 500!')
+                  setImage(error500)
+                  setText('эмитация ошибки на серверем ошибка 500-обычно означает что что-то сломалось на сервере, например база данных)')
+                  setInfo('')
+              }else {
+                  setCode('Error')
+                  setImage(errorUnknown)
+                  setText('Network Error AxiosError')
+                  setInfo('')
+              }
             })
     }
+
+
+
 
     return (
         <div id={'hw13'}>
@@ -55,7 +75,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={!!info}
 
                     >
                         Send true
@@ -64,6 +84,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
+                        disabled={!!info}
                         // дописать
 
                     >
@@ -73,6 +94,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
+                        disabled={!!info}
                         // дописать
 
                     >
@@ -82,6 +104,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
+                        disabled={!!info}
                         // дописать
 
                     >
