@@ -55,12 +55,12 @@ const HW13 = () => {
             .catch(rej => {
                     console.log(rej)
                     if (rej.message === 'Request failed with status code 500') {
-                        setCode('Ошибка 400!')
+                        setCode('500')
                         setImage(error400)
                         setText(rej.response.data.errorText)
                         setInfo(rej.response.data.info)
                     } else if (rej.message === 'Request failed with status code 400') {
-                        setCode('Ошибка 500!')
+                        setCode('400')
                         setImage(error500)
                         setText(rej.response.data.errorText)
                         setInfo(rej.response.data.info)
