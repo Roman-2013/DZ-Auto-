@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/DZ-Auto-/static/css/main.8dd4abbb.css",
-    "main.js": "/DZ-Auto-/static/js/main.8c3683f0.js",
+    "main.js": "/DZ-Auto-/static/js/main.3feddb6c.js",
     "static/js/787.66cb4309.chunk.js": "/DZ-Auto-/static/js/787.66cb4309.chunk.js",
     "static/media/avatar.png": "/DZ-Auto-/static/media/avatar.d947cb9d0d13765666b6.png",
     "static/media/200.svg": "/DZ-Auto-/static/media/200.96248f7df0dde10e0a82ac30418f50bc.svg",
@@ -15,11 +15,11 @@
     "index.html": "/DZ-Auto-/index.html",
     "static/media/burger.svg": "/DZ-Auto-/static/media/burger.700e416f7bfe3697f96b36c778d25355.svg",
     "main.8dd4abbb.css.map": "/DZ-Auto-/static/css/main.8dd4abbb.css.map",
-    "main.8c3683f0.js.map": "/DZ-Auto-/static/js/main.8c3683f0.js.map",
+    "main.3feddb6c.js.map": "/DZ-Auto-/static/js/main.3feddb6c.js.map",
     "787.66cb4309.chunk.js.map": "/DZ-Auto-/static/js/787.66cb4309.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8dd4abbb.css",
-    "static/js/main.8c3683f0.js"
+    "static/js/main.3feddb6c.js"
   ]
 }
