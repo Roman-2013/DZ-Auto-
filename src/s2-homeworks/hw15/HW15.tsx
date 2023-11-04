@@ -49,17 +49,23 @@ const HW15 = () => {
     const [techs, setTechs] = useState<TechType[]>([])
 
     const sendQuery = (params: any) => {
-        debugger
         setLoading(true)
         getTechs(params)
             .then((res) => {
                 // делает студент
-                if (res){
-                    setTechs(res.data.techs)
+                if (res) {
                     setTotalCount(res.data.totalCount)
+                    if(sort===''){
+                        setTechs(res.data.techs)
+                    }else if(sort==='0developer'){
+                        setTechs(res.data.techs.sort((a,b)=>b.id-a.id))
+                    }
+
+                   // console.log(res.data.techs)
+
                 }
                 // сохранить пришедшие данные
-            }).finally(()=>{
+            }).finally(() => {
             setLoading(false)
         })
     }
@@ -68,34 +74,25 @@ const HW15 = () => {
         // делает студент
         setPage(newPage)
         setCount(newCount)
-        // setPage(
-        // setCount(
 
-        sendQuery({page: newPage, count:newCount})
-        setSearchParams({page:newPage.toString(),count:newCount.toString()})
-        // sendQuery(
-        // setSearchParams(
-        //
+        sendQuery({page: newPage, count: newCount})
+        setSearchParams({page: newPage.toString(), count: newCount.toString()})
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
-
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        console.log(newSort)
         setSort(newSort)
         setPage(1)
 
-        sendQuery({page: page, count:count})
-        setSearchParams({page:page.toString(),count:count.toString(),sort:newSort.toString()})
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({page: page, count: count})
+        setSearchParams({page: page.toString(), count: count.toString(), sort: newSort})
         //
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
+        sendQuery({page: params.page, count: params.count,sort:params.sort})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
@@ -117,7 +114,7 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}><CircularProgress /></div>}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}><CircularProgress/></div>}
 
                 <SuperPagination
                     page={page}
