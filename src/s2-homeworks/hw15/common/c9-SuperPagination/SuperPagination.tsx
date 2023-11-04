@@ -17,7 +17,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = (
     }
 ) => {
     const lastPage =()=> {
-      return   Math.ceil(totalCount/ itemsCountForPage)
+        return   Math.ceil(totalCount/ itemsCountForPage)
     }// пишет студент // вычислить количество страниц
 
 
